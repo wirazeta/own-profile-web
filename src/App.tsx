@@ -1,15 +1,18 @@
 import './App.css'
-import { BrowserRouter as Router } from 'react-router-dom'
-import Navbar from './components/navbar'
+import Sidebar from './components/sidebar'
+import Contact from './pages/contact'
 import Home from './pages/home'
+import Project from './pages/project'
+import Work from './pages/work'
 function App() {
 
   return (
     <>
-      <Router>
-        <Navbar />
-      </Router>
-      <Home />
+      <Sidebar/>
+      <Home/>
+      <Work/>
+      <Project/>
+      <Contact/>
     </>
   )
 }
