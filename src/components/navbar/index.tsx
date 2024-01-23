@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaTimes, FaBars } from 'react-icons/fa';
-import { CiMenuFries } from 'react-icons/ci';
 import navItems from "./items"
 import ProfilePicture from '../icons/ProfilePicture.jpg';
 
