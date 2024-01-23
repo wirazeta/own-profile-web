@@ -1,43 +1,75 @@
 import { useState } from "react";
-import { Link } from "react-scroll";
-import { FaTimes } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+import { FaTimes, FaBars } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
 import navItems from "./items"
 import ProfilePicture from '../icons/ProfilePicture.jpg';
 
 function Navbar() {
 
-    const [click, setClick] = useState(false);
-    const content = <></>
-    const handleClick = () => {
-        setClick(!click);
+    const [navbar, setNavbar] = useState(false);
+    // const content = <></>
+    const handleNavbar = () => {
+        setNavbar(!navbar);
     }
 
     return (
-        <nav className="bg-white border-gray-200 dark:bg-gray-300 dark:border-gray-700">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <div className="flex rounded-lg size-10">
-                    <img src={ProfilePicture}></img>
-                </div>
-                <div className="max-md:hidden">
-                    <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-300 md:dark:bg-gray-300 dark:border-gray-300">
-                        {
-                            navItems.map((item) => {
-                                return (
-                                    <Link spy={true} smooth={true} to={item.name}>
-                                        <li className="text-black hover:text-blue-700 transition border-b-2 border-gray-300 hover:border-blue-700 cursor-pointer">{item.name}</li>
-                                    </Link>
-                                )
-                            })
-                        }
-                    </ul>
-                    <div>
-                        {click && content}
+        <nav className="w-full h-auto bg-gray-300 lg:px-24 md:px-16 sm:px-14 px-12 py-1 shadow-md">
+            <div className="justify-between mx-auto lg:w-full md:items-center md:flex">
+                {/* Navbar logo & toggle button section */}
+                <div>
+                    <div className="flex items-center justify-between py-3 md:py-5 md:block">
+                        <Link
+                            to="/profile"
+                            className="text-3x1 text-orange-500 font-semibold tracking-[0.1rem] hover:cursor-pointer"
+                        >
+                            <img
+                                className="flex size-10 rounded-full"
+                                src={ProfilePicture} alt="profile-picture" />
+                        </Link>
+                        <div className="md:hidden">
+                            <button
+                                className="p-2 text-gray-700 rounded-md outline-none border border-transparent focus:border-gray-400 focus:border"
+                                onClick={handleNavbar}
+                            >
+                                {
+                                    navbar ?
+                                        (<FaTimes
+                                            className="text-gray-400 cursor-pointer"
+                                            size={24}
+                                        />) :
+                                        (<FaBars
+                                            className="text-gray-400 cursor-pointer"
+                                            size={24}
+                                        />)
+                                }
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <button className="block sm:hidden transition" onClick={handleClick}>
-                    {click ? <FaTimes /> : <CiMenuFries />}
-                </button>
+                <div
+                    className={`flex justify-between items-center md:block ${navbar ? "block" : "hidden"
+                        }`}
+                >
+                    <ul className="list-none lg:flex md:flex sm:block block gap-x-5 gap-y-16">
+                        {navItems.map((items) => (
+                            <li>
+                                <Link
+                                    to={items.href}
+                                    className="text-gray-400 text-[1.15rem] font-medium tracking-wider hover:text-gray-200 ease-out duration-700 hover:cursor-pointer"
+                                >
+                                    {items.name}
+                                </Link>
+                                {/* <a
+                                    href={items.href}
+                                    className="text-gray-400 text-[1.15rem] font-medium tracking-wider hover:text-gray-200 ease-out duration-700"
+                                >
+                                    {items.name}
+                                </a> */}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </nav>
     )
