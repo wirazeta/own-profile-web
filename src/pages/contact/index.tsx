@@ -1,8 +1,21 @@
+import { createForm } from "../../components/form";
+
 function Contact() {
+
+    const sendForm = async () => {
+        const name = (document.getElementById("name") as HTMLInputElement).value;
+        const phone = (document.getElementById("phone") as HTMLInputElement).value;
+        const email = (document.getElementById("email") as HTMLInputElement).value;
+        const subject = (document.getElementById("subject") as HTMLInputElement).value;
+        const message = (document.getElementById("message") as HTMLInputElement).value;
+
+        await createForm(name, phone, email, subject, message);
+    }
+
     return (
         <div id="contact" className="max-w-[1040px] m-auto md:pl-20 p-4 py-16">
             <h1 className="py-4 text-4xl font-bold text-center text-gray-600">Contact</h1>
-            <form action="https://getform.io/f/681799c2-8dba-4514-bdb2-b5c877302f8b" method="POST" encType="multipart/form-data">
+            <form>
                 <div className="grid md:grid-cols-2 gap-4 w-full py-2">
                     <div className="flex flex-col">
                         <label className="uppercase text-sm py-2">Name</label>
@@ -26,6 +39,8 @@ function Contact() {
                     <textarea className="border-2 rounded-lg p-3 flex border-gray-300" rows={10} name="message" id="message" />
                 </div>
                 <button className="bg-gray-600 text-gray-100 mt-4 w-full p-4 rounded-lg"
+                    onClick={sendForm}
+                    type="button"
                 >
                     Send Message
                 </button>

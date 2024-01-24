@@ -4,6 +4,7 @@ import Contact from './pages/contact'
 import Home from './pages/home'
 import Project from './pages/project'
 import Work from './pages/work'
+import Admin from './pages/admin'
 function App() {
 
   return (
@@ -13,6 +14,7 @@ function App() {
       <Work/>
       <Project/>
       <Contact/>
+      <Admin/>
     </>
   )
 }
