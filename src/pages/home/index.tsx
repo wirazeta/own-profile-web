@@ -18,7 +18,7 @@ function Home() {
                         <TypeAnimation
                             sequence={[
                                 'Developer', //Type Developer
-                                1000, //Waiting 1s
+                                2000, //Waiting 1s
                                 'Coder', //Type Coder
                                 2000, //Waiting 2s
                                 'Tech Enthusiast', //Type Tech Enthusiast
