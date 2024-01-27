@@ -15,7 +15,23 @@ const projectItems = [
     {
         title: 'Frontend',
         img: (ProfilePicture)
-    }
+    },
+    {
+        title: 'Backend1',
+        img: (ProfilePicture)
+    },
+    {
+        title: 'Machine Learning1',
+        img: (ProfilePicture)
+    },
+    {
+        title: 'Data Analyst1',
+        img: (ProfilePicture)
+    },
+    {
+        title: 'Frontend1',
+        img: (ProfilePicture)
+    },
 ]
 
 export default projectItems;
