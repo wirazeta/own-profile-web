@@ -3,8 +3,17 @@ import { CiMail } from "react-icons/ci";
 import { getForm } from "../../../components/form";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 
+type form = {
+    id: number
+    name: string,
+    subject: string,
+    email: string,
+    message: string,
+    phone: string,
+}
+
 function Form() {
-    const [data, setData] = useState<any[]>([]);
+    const [data, setData] = useState<form[]>([]);
     const [id, setId] = useState<number>();
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -48,9 +57,7 @@ function Form() {
         <div id="form" className="max-w-[1040px] m-auto md:pl-20 p-4 py-15">
             <h1 className="text-4xl font-bold text-center text-gray-600 ">Forms</h1>
             <p className="text-center py-8 text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quam
-                eos distinctio earum ipsam aliquam temporibus corrupti nam reprehenderit
-                fugiat eum vitae modi quaerat ipsum maiores provident, quibusdam corporis harum?
+                Some people send their messages. You can see the message from here.
             </p>
             <div className="grid sm:grid-cols-2 gap-12">
                 {
@@ -61,23 +68,33 @@ function Form() {
                                 <h3 className="text-2xl font-bold text-white tracking-wider text-center">
                                     {item.subject}
                                 </h3>
-                                <p className="pb-2 pt-0 font-semibold text-white text-center">From: {item.name}</p>
-                                <p className="pb-2 pt-0 text-white text-center">Email : {item.email}</p>
-                                <a onClick={() => { handleId(item.id) }}>
-                                    <p className="text-center p-3 rounded-ld bg-white text-gray-700 font-bold cursor-pointer text-lg">More Info</p>
+                                <p className="pb-2 pt-0 font-semibold text-white text-center">From : </p>
+                                <p className="pb-2 pt-0 font-semibold text-white text-center">{item.name}</p>
+                                <p className="pb-2 pt-0 text-white text-center">Email : </p>
+                                <p className="pb-2 pt-0 text-white text-center">{item.email}</p>
+                                <a onClick={() => { handleId(item.id) }} className="flex items-center justify-center">
+                                    <span className="text-center p-3 rounded-ld bg-white text-gray-700 font-bold cursor-pointer text-lg">More Info</span>
                                 </a>
                             </div>
                             {
                                 item.id === id ? (
-                                    <div className="block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-gray-600 h-[300px] w-full rounded-xl">
-                                        <h3 className="text-center font-bold text-white w-full rounded-xl">
-                                            Message :
-                                        </h3>
-                                        <p className="pb-4 pt-2 font-semibold text-white text-center">{item.message}</p>
-                                        <a onClick={() => { handleId(0) }}>
-                                            <p className="text-center p-3 rounded-ld bg-gray-200 text-gray-700 font-bold cursor-pointer text-lg">Back</p>
-                                        </a>
-                                    </div>
+                                    <>
+                                        <div className="absolute z-10 h-full w-full rounded-xl bg-gray-600 items-center">
+                                            <h3 className="text-center font-bold text-white w-full rounded-xl pt-3">
+                                                Message :
+                                            </h3>
+                                            <p className="pb-4 pt-2 pl-2 pr-2 font-semibold text-white text-center">{item.message}</p>
+                                            <h3 className="text-center font-bold text-white w-full rounded-xl pt-3">
+                                                Phone number :
+                                            </h3>
+                                            <p className="pb-4 pt-2 pl-2 pr-2 font-semibold text-white text-center">{item.phone}</p>
+                                            <div className="absolute bottom-0 items-center h-auto hover:cursor-pointer text-gray-700 hover:bg-gray-400 w-auto m-4 p-2 rounded-xl bg-white">
+                                                <a onClick={() => { handleId(0) }}>
+                                                    <p className="">Back</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </>
                                 ) : (
                                     <>
                                     </>

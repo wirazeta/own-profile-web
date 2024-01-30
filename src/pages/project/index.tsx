@@ -2,6 +2,7 @@ import projectItems from "./items";
 import { useState } from "react";
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 function Project() {
+    const [id, setId] = useState<number>();
 
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage = 4;
@@ -24,6 +25,9 @@ function Project() {
             setCurrentPage(currentPage + 1);
         }
     }
+    const handleId = (id: number) => {
+        setId(id);
+    }
 
     return (
         <div id="project" className="max-w-[1040px] m-auto md:pl-20 p-4 py-15">
@@ -43,10 +47,30 @@ function Project() {
                                     {item.title}
                                 </h3>
                                 <p className="pb-4 pt-2 text-white text-center">React Js</p>
-                                <a href="/">
-                                    <p className="text-center p-3 rounded-ld bg-white text-gray-700 font-bold cursor-pointer text-lg">More Info</p>
+                                <a onClick={() => { handleId(item.id) }} className="flex items-center justify-center">
+                                    <span className="text-center p-3 rounded-ld bg-white text-gray-700 font-bold cursor-pointer text-lg">More Info</span>
                                 </a>
                             </div>
+                            {
+                                item.id === id ? (
+                                    <>
+                                        <div className="absolute z-10 h-full w-full rounded-xl bg-gray-600 items-center">
+                                            <h3 className="text-center font-bold text-white w-full rounded-xl pt-3">
+                                                Description :
+                                            </h3>
+                                            <p className="pb-4 pt-2 pl-2 pr-2 font-semibold text-white text-center">{item.description}</p>
+                                            <div className="absolute bottom-0 items-center h-auto hover:cursor-pointer text-gray-700 hover:bg-gray-400 w-auto m-4 p-2 rounded-xl bg-white">
+                                                <a onClick={() => { handleId(0) }}>
+                                                    <p className="">Back</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                    </>
+                                )
+                            }
                         </div>
                     ))
                 }
